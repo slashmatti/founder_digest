@@ -1,0 +1,2 @@
+class UserSubmission < ApplicationRecord
+end
