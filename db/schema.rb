@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_19_170117) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_24_150207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,13 +49,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_170117) do
     t.index ["project_id"], name: "index_stakeholder_updates_on_project_id"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
+  create_table "subscribers", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_subscriptions_on_project_id"
-    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+    t.index ["project_id"], name: "index_subscribers_on_project_id"
+    t.index ["user_id"], name: "index_subscribers_on_user_id"
   end
 
   create_table "user_submissions", force: :cascade do |t|
@@ -91,6 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_170117) do
 
   add_foreign_key "projects", "users"
   add_foreign_key "stakeholder_updates", "projects"
-  add_foreign_key "subscriptions", "projects"
-  add_foreign_key "subscriptions", "users"
+  add_foreign_key "subscribers", "projects"
+  add_foreign_key "subscribers", "users"
 end
