@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'logout', to: 'pages#logout', as: 'logout'
 
   resources :subscribe, only: [:index]
-  resources :dashboard, only: [:index]
+  # resources :dashboard, only: [:index]
+  get 'dashboard', to: 'dashboard#index'
+  
+  get 'stakeholder_updates/new', to: 'stakeholder_updates#new'
+
   resources :account, only: [:index, :update]
   resources :billing_portal, only: [:create]
   match '/billing_portal' => 'billing_portal#create', via: [:get]
