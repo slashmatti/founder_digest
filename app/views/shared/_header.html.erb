@@ -3,7 +3,7 @@
     <div class="flex items-center flex-no-shrink text-white mr-6">
       <% logo_path = current_user ? dashboard_index_path : root_path %>
       <%= link_to logo_path do %>
-        <%= image_tag "avatar.png",  style: "max-height: 42px" %>
+        <%= image_tag "logo.png",  style: "max-height: 35px" %>
       <% end %>
       <span class="font-semibold text-xl tracking-tight"><%= ENV['COMPANY_NAME'] %></span>
     </div>
