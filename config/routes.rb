@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   match '/billing_portal' => 'billing_portal#create', via: [:get]
   match '/cancel' => 'billing_portal#destroy', via: [:get]
 
+  resources :user_submissions, only: [:create]
+
   # static pages
   pages = %w(
     privacy terms
