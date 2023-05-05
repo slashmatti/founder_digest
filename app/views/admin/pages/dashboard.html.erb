@@ -7,8 +7,9 @@
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Email</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Plan</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Website</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Newsletter</th>
@@ -18,35 +19,43 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white">
-            <tr>
-              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
-                <div class="flex items-center">
-                    <!-- TODO - demonstrate how to render avatars with Gravatar.org -->
-                  <!-- <div class="h-10 w-10 flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                  </div> -->
-                  <div class="ml-4">
-                    <div class="font-medium text-gray-900">Matti Salimi</div>
-                  </div>
-                </div>
-              </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">egdapa@hotmail.com</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">https://hotmail.com</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Founder</td>
-              <td class="px-3 py-4 text-sm text-gray-500 max-w-xs">
-                <div class="text-gray-900">Front-end Developer Front-end Developer Front-end Developer Front-end Developer Front-end Developer </div>
-                <!-- <div class="text-gray-500">Optimization</div> -->
-              </td>
-              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                <div>
-                    <select id="location" name="location" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                      <option selected>Pending</option>
-                      <option>Approve</option>
-                      <option>Reject</option>
-                    </select>
+
+            <% @user_submissions.each do |user_submission| %>
+
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                  <div class="flex items-center">
+                      <!-- TODO - demonstrate how to render avatars with Gravatar.org -->
+                    <!-- <div class="h-10 w-10 flex-shrink-0">
+                      <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                    </div> -->
+                    <div class="ml-4">
+                      <div class="font-medium text-gray-900"><%= user_submission.name %></div>
+                    </div>
                   </div>
                 </td>
-            </tr>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= user_submission.plan_name %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= user_submission.email %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= user_submission.website %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= user_submission.job_role %></td>
+                <td class="px-3 py-4 text-sm text-gray-500 max-w-xs">
+                  <div class="text-gray-900"><%= user_submission.text %></div>
+                  <!-- <div class="text-gray-500">Optimization</div> -->
+                </td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                  <div>
+                    <%= form_for user_submission, url: admin_user_submission_path(user_submission) do |f| %>
+                      <select id="user_submission_status" name="user_submission[status]" class="mb-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <option <%= 'selected' if user_submission.status.nil? %>>Pending</option>
+                        <option <%= 'selected' if user_submission.status == 'Approve' %>>Approve</option>
+                        <option <%= 'selected' if user_submission.status == 'Reject' %>>Reject</option>
+                      </select>
+                      <%= f.submit 'Update', class: '-full rounded-md bg-brand-blue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-blue-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' %>
+                  <% end %>
+                    </div>
+                  </td>
+              </tr>
+            <% end %>
 
             <!-- More people... -->
           </tbody>
