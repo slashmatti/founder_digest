@@ -4,8 +4,10 @@ class UserSubmissionMailer < ApplicationMailer
         mail(to: user_submission.email, subject: "Sorry, you were rejected")
     end
 
-    def approve(user_submission)
+    def approve(user_submission, pw)
         @name = user_submission.name
+        @email = user_submission.email
+        @pw = pw
         mail(to: user_submission.email, subject: "Congrats, you were accepted")
     end
 end

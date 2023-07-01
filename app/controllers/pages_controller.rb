@@ -7,6 +7,9 @@ class PagesController < ApplicationController
   def apply
   end
 
+  def thanks
+  end
+
   def start
   end
 
