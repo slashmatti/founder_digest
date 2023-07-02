@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'apply', to: 'pages#apply', as: 'apply' # new user application form
   get 'thanks', to: 'pages#thanks', as: 'thanks' # invoke with thanks_path
   get 'start', to: 'pages#start', as: 'start' # new user onboarding
+  get 'magic_login', to: 'pages#magic_login', as: 'magic_login' 
 
   devise_for :users
   get 'logout', to: 'pages#logout', as: 'logout'
