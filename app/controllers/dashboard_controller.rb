@@ -1,8 +1,10 @@
 class DashboardController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_flashes
 
   def index
+    # GET project here, to render on the frontend
+    @project = current_user.projects.first
   end
 
   private

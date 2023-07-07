@@ -1,26 +1,23 @@
 <%= render partial: "shared/heading", locals: {title: 'Welcome to FoundrDigest', tagline: 'Congrats on being accepted to our private community.<br>Provide just a couple more details below to begin subscribing to other founder stakeholder updates.'} %>
 
 <div class="max-w-sm mx-auto">
+  <%= form_for Project.new do |f| %>
   <form>
     <div class="space-y-12">
-      <div class="">
-        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-  
-          <div class="sm:col-span-6">
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">What's your stakeholder update called?</label>
-            <div class="mt-2">
-              <input id="email" name="email" type="text" placeholder="Hotmail.com Monthly Update" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-            <p class="mt-3 text-sm leading-6 text-gray-600">Your company name is fine, e.g. “Hotmail”, or a<br>brief summary, such as “B2B SaaS Bootstrapped Startup"</p>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-6">
+          <label for="title" class="block text-sm font-medium leading-6 text-gray-900">What's your stakeholder update called?</label>
+          <div class="mt-2">
+            <input id="project_title" name="project[title]" type="text" placeholder="Hotmail.com Monthly Update" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
-  
+          <p class="mt-3 text-sm leading-6 text-gray-600">Your company name is fine, e.g. “Hotmail”, or a<br>brief summary, such as “B2B SaaS Bootstrapped Startup"</p>
         </div>
       </div>
   
       <div class="col-span-full">
-        <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Please describe your updates in 15 words or fewer.</label>
+        <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Please describe your updates in 15 words or fewer.</label>
         <div class="mt-2">
-          <textarea id="about" name="about" maxlength="150" placeholder="Monthly marketing and product updates by a bootstrapped Shopify App founder." rows="3" class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
+          <textarea id="project_description" name="project[description]" maxlength="150" placeholder="Monthly marketing and product updates by a bootstrapped Shopify App founder." rows="3" class="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
         </div>
       </div>
     </div>
@@ -29,4 +26,5 @@
       <button type="submit" class="w-full rounded-md bg-brand-blue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-blue-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Continue to Dashboard</button>
     </div>
   </form>  
+  <% end %>
 </div>

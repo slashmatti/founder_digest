@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   match '/cancel' => 'billing_portal#destroy', via: [:get]
 
   resources :user_submissions, only: [:create]
+  resources :projects, only: [:create]
 
   # static pages
   pages = %w(
