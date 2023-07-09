@@ -31,6 +31,7 @@ gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'bootsnap', require: false
 
 group :development, :test do
+  gem 'faker'
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
 end
 
@@ -47,5 +48,4 @@ group :test do
   gem 'factory_bot_rails'
   gem 'shoulda-callback-matchers'
   gem 'shoulda-matchers'
-  gem 'faker'
 end

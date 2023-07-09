@@ -6,7 +6,8 @@
         <div class="basis-1/2">
             <div class="flex gap-x-2">
                 <div class="basis-1/6">
-                    <img src="https://placehold.co/150" alt="">
+                    <!-- <img src="https://placehold.co/150" alt=""> -->
+                    <img src="https://logo.clearbit.com/http://<%= @project.website %>" alt="">
                 </div>
                 <div class="basis-5/6">
                     <p class="text-lg"><%= @project.title %></p>
@@ -23,17 +24,17 @@
 </div>
 
 <!-- newsletters -->
-<div class="p-5 max-w-3xl mx-auto space-y-2">
-    <% 5.times do %>
-        <div class="flex">
+<div class="p-5 max-w-3xl mx-auto space-y-4">
+    <% @other_projects.each do |other_project| %>
+        <div class="flex border border-dashed border-2 p-2">
             <div class="basis-1/2">
                 <div class="flex gap-x-2">
                     <div class="basis-1/6">
-                        <img src="https://placehold.co/150" alt="">
+                    <img src="https://logo.clearbit.com/http://<%= other_project.website %>" alt="">
                     </div>
                     <div class="basis-5/6">
-                        <p class="text-lg">{{ Title }}</p>
-                        <p class="text-sm">{{ Description }} {{ URL }}</p>
+                        <p class="text-lg"><%= other_project.title %></p>
+                        <p class="text-xs"><%= other_project.description %> (<%= other_project.website %>)</p>
                     </div>
                 </div>
             </div>

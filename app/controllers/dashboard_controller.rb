@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   def index
     # GET project here, to render on the frontend
     @project = current_user.projects.first
+    @other_projects = Project.all
   end
 
   private
