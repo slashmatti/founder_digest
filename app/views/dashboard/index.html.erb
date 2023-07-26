@@ -41,13 +41,56 @@
             <div class="basis-1/2 text-right">
                 <div class="relative flex items-start pb-4 pt-3.5">
                     <div class="min-w-0 flex-1 text-sm leading-6">
-                    <label for="subscribed" class="font-medium text-gray-900">{{ Subscribed }}</label>
+                        <label for="<%= other_project.id %>_subscribed_status" class="font-medium text-gray-900">{{ Subscribed }}</label>
                     </div>
                     <div class="ml-3 flex h-6 items-center">
-                    <input id="subscribed" aria-describedby="subscribed-description" name="subscribed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange-dark">
+                        <% subscriber = Subscriber.find_by(user_id: current_user.id, project_id: other_project.id) %>
+                        <input onchange="checkboxChanged(this)" <%= 'checked' if subscriber %> data-subscriber-id="<%= subscriber.try(:id) %>" data-project-id="<%= other_project.id %>" id="<%= other_project.id %>_subscribed_status" aria-describedby="subscribed-description" name="subscribed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange-dark">
                     </div>
                 </div>
             </div>
         </div>
     <% end %>
 </div>
+
+<script type="text/javascript">
+    function checkboxChanged(checkbox) {
+        let projectId = checkbox.dataset.projectId;
+
+        if (checkbox.checked) {
+            createSubscription(projectId);
+        } else {
+            let subscriberId = checkbox.dataset.subscriberId;
+            deleteSubscription(projectId, subscriberId);
+        }
+    }
+
+    function createSubscription(projectId) {
+        $.ajax({ // url, data, callback
+            url: '/subscribers',
+            method: 'POST',
+            data: { subscriber: { project_id: projectId } },
+            success: function(data) {
+                // TODO: add the subscriber ID as a data attribute
+                let subscriberId = data.subscriber_id;
+                let projectId = data.project_id;
+                let checkbox = document.getElementById(projectId + '_subscribed_status')
+                checkbox.dataset.subscriberId = subscriberId
+            }
+        })
+
+    }
+
+    function deleteSubscription(projectId, subscriberId) {
+        $.ajax({ // url, data, callback
+            url: '/subscribers/' + subscriberId,
+            method: 'DELETE',
+            data: { subscriber: { project_id: projectId } },
+            success: function(data) {
+                console.log('received response from DELETE subscriber request');
+                console.log(data);
+            }
+        })
+
+    }
+</script>
