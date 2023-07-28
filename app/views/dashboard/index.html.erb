@@ -17,7 +17,10 @@
         </div>
         <div class="basis-1/2 text-right">
             <p>{{ Num }} Subscribers</p>
-            <p><a href="/stakeholder_updates/new" class="text-brand-orange">Share update</a></p>
+            <p>
+                <a href="<%= new_stakeholder_update_path %>" class="text-brand-orange">Share update</a>
+                | <a href="<%= stakeholder_update_path(current_user.stakeholder_updates.last) %>" class="text-brand-orange">View last update</a>
+            </p>
             <p><a href="" class="text-brand-blue">Edit subscription</a></p>
         </div>
     </div>
@@ -71,7 +74,6 @@
             method: 'POST',
             data: { subscriber: { project_id: projectId } },
             success: function(data) {
-                // TODO: add the subscriber ID as a data attribute
                 let subscriberId = data.subscriber_id;
                 let projectId = data.project_id;
                 let checkbox = document.getElementById(projectId + '_subscribed_status')

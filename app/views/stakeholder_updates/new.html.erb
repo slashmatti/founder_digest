@@ -1,8 +1,12 @@
 <%= render partial: "shared/heading", locals: {title: 'Write an Update', tagline: 'Share the latest news from your company.'} %>
 
 <div class="max-w-3xl mx-auto">
-    <textarea name="" id="" cols="80" rows="8" placeholder="Stakeholders, this month we..."></textarea>
-    <div class="text-right">
-        <button type="submit" class="w-full rounded-md bg-brand-orange px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Apply</button>
-    </div>
+    <%= form_for @stakeholder_update do |form| %>
+        <div class="field">
+        <%= form.rich_text_area :content %>
+        </div>
+        <div class="mt-2 text-right">
+            <button type="submit" class="w-full rounded-md bg-brand-orange px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Apply</button>
+        </div>
+    <% end %>
 </div>
