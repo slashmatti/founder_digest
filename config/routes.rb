@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   
   get 'stakeholder_updates/new', to: 'stakeholder_updates#new'
-  resources :stakeholder_updates, only: [:new, :create, :show]
+  resources :stakeholder_updates, only: [:new, :create, :show, :update]
 
   resources :account, only: [:index, :update]
   resources :billing_portal, only: [:create]

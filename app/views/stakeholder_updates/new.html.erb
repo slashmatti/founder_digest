@@ -2,11 +2,19 @@
 
 <div class="max-w-3xl mx-auto">
     <%= form_for @stakeholder_update do |form| %>
-        <div class="field">
+        <div class="sm:col-span-6">
+            <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title / Headline</label>
+            <div class="mt-2">
+                <%= form.text_field :title, required: true, placeholder: 'July 2023 newsletter', class: 'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+            </div>
+            <small>This will be used as a clickable link to your update in email newsletter.</small>
+        </div>
+
+        <div class="mt-2 field">
         <%= form.rich_text_area :content %>
         </div>
         <div class="mt-2 text-right">
-            <button type="submit" class="w-full rounded-md bg-brand-orange px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Apply</button>
+            <button type="submit" class="w-full rounded-md bg-brand-orange px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-orange-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save draft</button>
         </div>
     <% end %>
 </div>
