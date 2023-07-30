@@ -1,0 +1,11 @@
+<p>Hi <%= @name %>,</p>
+
+<p>Below are the latest updates from <%= @stakeholder_updates.count %> of the Founder Digests you subscribe to.</p>
+
+<ul>
+    <% @stakeholder_updates.each do |su| %>
+        <li><%= su.title %>, by <%= su.user.name %> (<%= su.user.email %>)</li>
+    <% end %>
+</ul>
+
+<p>Founder Digest</p>
