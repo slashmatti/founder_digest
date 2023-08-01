@@ -1,0 +1,7 @@
+<%= render partial: "shared/heading", locals: {title: @stakeholder_update.title, tagline: 'Read the latest update below.'} %>
+
+<div class="max-w-3xl mx-auto">
+    <div class="border p-4 border-dashed border-2">
+        <%= @stakeholder_update.content %>
+    </div>
+</div>
