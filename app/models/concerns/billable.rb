@@ -2,13 +2,14 @@ module Billable
   extend ActiveSupport::Concern
 
   included do
-    # after_create :setup_stripe_customer
+    after_create :setup_stripe_customer
   end
 
   # done after signup, for easy acquisition metrics inside Stripe UI
   def setup_stripe_customer
     customer = Stripe::Customer.create({
       email: self.email,
+      name: self.name,
       metadata: {
         external_id: self.id
       }

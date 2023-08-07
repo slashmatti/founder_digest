@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 	end
 
   def maybe_skip_onboarding
-    redirect_to dashboard_index_path, notice: "You're already subscribed" if current_user.finished_onboarding?
+    redirect_to dashboard_path, notice: "You're already subscribed" if current_user.finished_onboarding?
   end
 end
