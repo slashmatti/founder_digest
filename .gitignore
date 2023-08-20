@@ -24,6 +24,7 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
+todos.md
 
 /public/assets
 
