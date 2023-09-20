@@ -1,6 +1,7 @@
 <p>Hi <%= @name %>,</p>
 <p>We've reviewed your application for FoundrDigest and are excited to extend you an invitation to join.</p>
 <p>
-    Get started <a href="<%= ENV['BASE_URL'] + '/magic_login?auth_code=' + @auth_code %>">here</a>.<br>
+    Get started <a href="<%= ENV['BASE_URL'] + '/magic_login?auth_code=' + @auth_code %>">here</a>.
+    Your temporary password is <%= @temp_password %> - change it on your Account page.<br>
 </p>
 <p>The FoundrDigest team</p>

@@ -22,10 +22,10 @@ class UserSubmission < ApplicationRecord
     end
 
     def approve!
-        pw = generate_random_string
-        created_user = User.create!(email: self.email, first_name: self.first_name, last_name: self.last_name, password: pw)
+        temp_password = generate_random_string
+        created_user = User.create!(email: self.email, first_name: self.first_name, last_name: self.last_name, plan_name: self.plan_name, password: temp_password)
         created_user.projects.create!(website: self.website)
-        UserSubmissionMailer.approve(self, created_user).deliver
+        UserSubmissionMailer.approve(self, created_user, temp_password).deliver
     end
 
 end

@@ -4,7 +4,12 @@ class ProjectsController < ApplicationController
 
     def update
         @project.update!(project_params)
-        redirect_to dashboard_path
+
+        if current_user.pro_plan?
+            redirect_to subscribe_index_path
+        else
+            redirect_to dashboard_path
+        end
     end
 
     private

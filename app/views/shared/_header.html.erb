@@ -19,9 +19,16 @@
       <div class="text-sm sm:flex-grow">
         <% nav_link_classes = 'ml-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900' %>
         <!-- TODO: ensure only admin can see Admin link -->
-        <a class="<%= nav_link_classes %>" href="/admin">Admin</a>
-        <a class="<%= nav_link_classes %>" href="/dashboard">Dashboard</a>
-        <a class="<%= nav_link_classes %>" href="/logout">Logout</a>
+        <% if current_user %>
+          <% if current_user.admin? %><a class="<%= nav_link_classes %>" href="/admin">Admin</a><% end %>
+          <a class="<%= nav_link_classes %>" href="/dashboard">Dashboard</a>
+          <a class="<%= nav_link_classes %>" href="/account">Account</a>
+          <a class="<%= nav_link_classes %>" href="/logout">Logout</a>
+        <% else %>
+          <a class="<%= nav_link_classes %>" href="/#pricing">Apply</a>
+          <a class="<%= nav_link_classes %>" href="/login">Login</a>
+        <% end %>
+
       </div>
     </div>
   </nav>
