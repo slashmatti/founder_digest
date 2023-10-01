@@ -23,7 +23,6 @@
                     | <a href="<%= stakeholder_update_path(current_user.stakeholder_updates.last) %>" class="text-brand-orange">View last</a>
                 <% end %>    
             </p>
-            <p><a href="" class="text-brand-blue">Edit subscription</a></p>
         </div>
     </div>
 </div>
@@ -64,23 +63,25 @@
         let projectId = checkbox.dataset.projectId;
 
         if (checkbox.checked) {
-            createSubscription(projectId);
+            createSubscription(projectId, checkbox);
         } else {
             let subscriberId = checkbox.dataset.subscriberId;
             deleteSubscription(projectId, subscriberId);
         }
     }
 
-    function createSubscription(projectId) {
+    function createSubscription(projectId, checkbox) {
         $.ajax({ // url, data, callback
             url: '/subscribers',
             method: 'POST',
             data: { subscriber: { project_id: projectId } },
             success: function(data) {
-                let subscriberId = data.subscriber_id;
-                let projectId = data.project_id;
-                let checkbox = document.getElementById(projectId + '_subscribed_status')
-                checkbox.dataset.subscriberId = subscriberId
+                if (data.success) {
+                    checkbox.dataset.subscriberId = data.subscriber_id;
+                } else {
+                    checkbox.checked = false; // revert user's intended behavior in UI
+                    alert(data.error);
+                }
             }
         })
 
@@ -92,8 +93,7 @@
             method: 'DELETE',
             data: { subscriber: { project_id: projectId } },
             success: function(data) {
-                console.log('received response from DELETE subscriber request');
-                console.log(data);
+                console.log('subscriber deleted');
             }
         })
 

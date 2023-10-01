@@ -4,8 +4,15 @@ class SubscribersController < ApplicationController
     before_action :set_subscriber, only: [:destroy]
 
     def create
-        subscriber = current_user.subscribers.create!(subscriber_params)
-        render json: { status: 'ok', subsriber_id: subscriber.id, project_id: subscriber.project_id }
+        subscriber = current_user.subscribers.new(subscriber_params)
+
+        if subscriber.save
+            response_params = { success: true, subscriber_id: subscriber.id }
+        else
+            response_params = { success: false, error: subscriber.errors.full_messages.join }
+        end
+
+        render json: response_params
     end
 
     def destroy
@@ -23,4 +30,10 @@ class SubscribersController < ApplicationController
     def subscriber_params
         params.require(:subscriber).permit(:project_id)
     end
+
+    def discount_cannot_be_greater_than_total_value
+        unless current_user.pro_plan?
+          errors.add(:discount, "can't be greater than total value")
+        end
+      end
 end
