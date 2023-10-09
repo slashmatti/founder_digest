@@ -1,5 +1,5 @@
 task send_digests: :environment do
-  DigestService.perform # TODO: guard via 'if date == 2nd of month'
+  DigestService.delay.perform # TODO: guard via 'if date == 2nd of month'
 end
 
 ### USER ONBOARDING - run hourly at 0:00 ###
