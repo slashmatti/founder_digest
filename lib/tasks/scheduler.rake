@@ -1,14 +1,15 @@
 task send_digests: :environment do
-  DigestService.delay.perform # TODO: guard via 'if date == 2nd of month'
+  today = Date.today
+  DigestService.delay.perform if today.mday == 5 # send on the 5th of the month
 end
 
 ### USER ONBOARDING - run hourly at 0:00 ###
-task :reminder_to_start_trial => :environment do
-  User.where(created_at: 24.hours.ago..23.hours.ago).each do |user|
-    next if user.paying_customer?
-    UserMailer.reminder_to_start_trial(user).deliver_later
-  end
-end
+# task :reminder_to_start_trial => :environment do
+#   User.where(created_at: 24.hours.ago..23.hours.ago).each do |user|
+#     next if user.paying_customer?
+#     UserMailer.reminder_to_start_trial(user).deliver_later
+#   end
+# end
 
 # enable after improving 'finished_onboarding' logic
 # task :offer_setup_assistance => :environment do
