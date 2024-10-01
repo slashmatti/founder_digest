@@ -16,6 +16,16 @@ bin/dev # uses foreman to boot server, frontend, and bg job queue
 bundle exec rspec # run all tests inside spec/
 bundle exec rspec spec/dir_name # run all tests inside given directory
 ```
+
+## Deploying
+install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and run `heroku login`. if repo admin has shared access to the server:
+
+```
+heroku git:remote -a heroku_app_name_here # you only need to do this once
+git push heroku master # deploys master branch
+git push heroku some_branch_name:master # deploys non-master branch
+```
+
 ## Production management
 to access the Rails console on the production server:
 ```
