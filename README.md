@@ -35,4 +35,4 @@ to add or update environment variables from your local `config/application.yml` 
 ```
 figaro heroku:set -e production
 ```
-you will need a Stripe account, and then put in your API credentials as environment variables
+you will need Stripe and Postmark accounts, and then put in your API credentials as environment variables
