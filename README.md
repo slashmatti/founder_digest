@@ -1,5 +1,5 @@
 # FounderDigest
-a give-and-get newsletter swap for founders seeking to learn from other users. Learn how to use this at [24 Hour MVP](https://founderhacker.com/24-hour-mvp).
+a give-and-get newsletter swap for founders seeking to learn from other users. Developed at [24 Hour MVP](https://founderhacker.com/24-hour-mvp).
 
 ## Installation
 1. clone the repo
